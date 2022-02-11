@@ -1,5 +1,5 @@
 import {FunctionComponent} from 'react'
-import Dogs from './../axios/axios-request'
+import Dogs from '../HomePageDogs'
 
 interface HomePageProps {
     

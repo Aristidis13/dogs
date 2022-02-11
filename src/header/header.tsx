@@ -15,7 +15,7 @@ const Header: FunctionComponent<any> = () => <header className="header">
             </li>
         </ul>
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<HomePage /> } />
       <Route path="breeds" element={<BreedsPage />}/>
     </Routes>
     </nav>
