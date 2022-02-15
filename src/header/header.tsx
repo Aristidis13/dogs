@@ -1,7 +1,7 @@
 import React,{ FunctionComponent } from 'react';
 import { Link,BrowserRouter,Routes,Route } from 'react-router-dom';
-import HomePage from './../Pages/home'
-import BreedsPage from './../Pages/breeds'
+import HomePage from '../Home/home'
+import BreedsPage from '../Breeds/breeds'
 
 const Header: FunctionComponent<any> = () => <header className="header">
     <BrowserRouter>
