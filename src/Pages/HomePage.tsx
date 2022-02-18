@@ -1,5 +1,5 @@
 import {FunctionComponent} from 'react'
-import RandomDogs from './Dogs'
+import RandomDogs from '../ComponentForPages/RandomDogs'
 
 interface HomePageProps {
     
@@ -7,8 +7,7 @@ interface HomePageProps {
 
 const HomePage: FunctionComponent<HomePageProps> = () => {
     return ( <article className="dogs-list">
-            Home Page
-            <RandomDogs />
+            <RandomDogs urlForAPICall='breeds/image/random/10' />
         </article> );
     }
  

@@ -7,10 +7,11 @@ interface DogProps {
 }
 
 const Dog: FunctionComponent<DogProps> = (props: DogProps) =>
-    <li className={"dog-item-"+props.index}>
-                <img src={props.imgUrl}
-                     className={"dog-image-"+props.index}
-                     alt="A cute dog" />
-    </li>
+    <div className={"dog-item-"+props.index}>
+        <img src={props.imgUrl}
+             className={"dog-image-"+props.index}
+             alt="A cute dog"
+        />
+    </div>
 
 export default Dog;
