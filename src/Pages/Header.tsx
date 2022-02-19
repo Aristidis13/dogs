@@ -3,7 +3,6 @@ import { Link} from 'react-router-dom';
 
 
 const Header: FunctionComponent<any> = () => <header className="header">
-
     <nav>
         <ul>
             <li className="nav-item">

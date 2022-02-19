@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { FunctionComponent, useEffect, useState } from 'react';
+import Dog from './Dog';
 
 interface MainBreedProps {
     name:string;
@@ -14,10 +15,13 @@ const MainBreed: FunctionComponent<MainBreedProps> = (props:MainBreedProps) => {
         .catch(err => {console.error('Error in image fetching: '+err);})
     },[props.name])
     return  (
-            <figure key={props.name}>
-                <figcaption className="breed-header">{props.name}</figcaption>
-                <img className="breed-image" src={imgUrl} alt={"Image of "+props.name} />
-            </figure>)
-}
+        <Dog key={props.name}
+            index={props.name}
+            imgUrl={imgUrl}
+            prefix={'breed'}
+            caption={props.name}
+            alt={"Image of "+props.name}
+        />
+    )}
  
 export default MainBreed;
