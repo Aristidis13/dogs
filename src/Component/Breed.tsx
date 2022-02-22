@@ -2,11 +2,11 @@ import axios from 'axios';
 import { FunctionComponent, useEffect, useState } from 'react';
 import Dog from './Dog';
 
-interface MainBreedProps {
+interface BreedProps {
     name:string;
 }
 
-const MainBreed: FunctionComponent<MainBreedProps> = (props:MainBreedProps) => {
+const Breed: FunctionComponent<BreedProps> = (props:BreedProps) => {
     const [imgUrl,setBreedImg] = useState("");
     useEffect( () => {
         axios
@@ -24,4 +24,4 @@ const MainBreed: FunctionComponent<MainBreedProps> = (props:MainBreedProps) => {
         />
     )}
  
-export default MainBreed;
+export default Breed;

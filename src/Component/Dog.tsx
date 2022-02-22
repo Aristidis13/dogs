@@ -10,9 +10,9 @@ interface DogProps {
 }
 
 const Dog: FunctionComponent<DogProps> = (props: DogProps) =>
-    <figure className={props.prefix+'Figure-'+props.index}>
+    <figure className={"dogFigure "+props.prefix+'Figure-'+props.index}>
         {  <img src={props.imgUrl}
-                className={props.prefix+'Img'+props.index}
+                className={"dogImage "+props.prefix+'Img'+props.index}
                 alt={ props.alt || "A cute dog"}
             />}
         { props.caption && <figcaption className={props.prefix+'Caption'+props.index}>{props.caption}</figcaption>}

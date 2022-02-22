@@ -1,5 +1,4 @@
 import {FunctionComponent, useCallback, useEffect,useState} from 'react'
-import Dog from './Dog'
 import * as helpers from '../Helpers'
 
 interface IDogsProps {
@@ -17,19 +16,15 @@ const RandomDogs: FunctionComponent<IDogsProps> = (props: IDogsProps) => {
         }
     },[ fetchDogs,compIsMounted ])
     if (dogs[0] !== 'ERROR')
-    return ( <section>
-        <h1>Welcome to Dog </h1>
-        <section id="randomDogs">
-            {dogs.map( (dog,index) => <Dog key={index.toString()}
-                     index={index.toString()}
-                     imgUrl={dog}
-                     prefix={"random"}
-                     /> )}
+    return ( <article className="randomDogsPage">
+        <h1 className="pageTitle">Dog Lovers</h1>
+        <p className="text randomIntro">See as many <span className="emoji">&#128054;</span> as you want!</p>
+        <section id="randomDogsImgs">
+            {helpers.showDogs(dogs,"random")}
         </section>
-        <button className="loadBtn" onClick={() => fetchDogs()}>Fetch more faces!</button>
-    </section> );
+        <button className="loadBtn" onClick={() => fetchDogs()}>Fetch more dogs</button>
+    </article> );
     else return <div>Request Failed with error:<br/>{dogs[1]} </div>
 }
-
 
 export default RandomDogs;

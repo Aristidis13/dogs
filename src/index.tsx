@@ -15,10 +15,14 @@ ReactDOM.render(
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage /> } />
+        <Route path="/" element={<HomePage numOfDogsPerAPIRequest={9} /> } />
         <Route path="breeds" element={<BreedsPage />}/>
         <Route path="breeds/:breedName" element={<BreedPage />} />
-        <Route path="breeds/:breedName/:subBreed" element={<SubBreedPage />} />
+        <Route path="breeds/:breedName/:subBreed" element={
+          true 
+          ? <SubBreedPage />
+          : <NotFoundPage />}
+        />        
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

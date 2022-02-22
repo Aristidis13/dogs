@@ -3,11 +3,11 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadImg from './LoadImg'
 
-interface SubBreedListComponentProps {
+interface SubBreedListProps {
     main:string
 }
  
-const SubBreedListComponent: FunctionComponent<SubBreedListComponentProps> = (props:SubBreedListComponentProps) => {
+const SubBreedList: FunctionComponent<SubBreedListProps> = (props:SubBreedListProps) => {
     let [subBreeds,setSubBreeds] = useState<string[]>([])
     useEffect( () => {
         axios
@@ -17,8 +17,9 @@ const SubBreedListComponent: FunctionComponent<SubBreedListComponentProps> = (pr
         })
         .catch(err => {console.log(err);})
     },[props.main])
+    if(subBreeds.length > 0)
     return (<>
-        <p>This is all the subBreeds of {props.main}</p>
+        <h2 className="subBreeds">Sub Breeds for {props.main}</h2>
         {
             subBreeds.map( (subBreed,index) => (
                 <Link to={`${subBreed}`} key={index} >
@@ -33,8 +34,8 @@ const SubBreedListComponent: FunctionComponent<SubBreedListComponentProps> = (pr
                 </Link>
             ))
         }
-    </>
-    )
+    </>)
+    else return (<></>)
 }
  
-export default SubBreedListComponent;
+export default SubBreedList;
