@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {BrowserRouter,Routes,Route } from 'react-router-dom'
+import {BrowserRouter,Routes,Route, HashRouter } from 'react-router-dom'
 import Header from './Pages/Header'
 import HomePage from './Pages/HomePage'
 import BreedsPage from './Pages/BreedsPage';
@@ -12,7 +12,7 @@ import NotFoundPage from './Pages/NotFound';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter >
       <Header />
       <Routes>
         <Route path="/" element={<HomePage numOfDogsPerAPIRequest={9} /> } />
@@ -25,7 +25,7 @@ ReactDOM.render(
         />        
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 {
-  "homepage": "http://Aristidis13.github.io/dogs",
+  "homepage": "https://Aristidis13.github.io/dogs/",
   "proxy": "https://dog.ceo/api/",
   "name": "dogs",
   "version": "0.1.0",
@@ -25,9 +25,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
