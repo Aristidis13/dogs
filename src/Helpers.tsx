@@ -1,42 +1,68 @@
 import axios from "axios";
-import Dog from "./Component/Dog";
+import Dog from "./Common/Dog";
 
-// Hook to make API requests
-const FetchData = async (url: string) => {
-    let data:never[] = [];
+/**
+ *  Promise that makes API requests, 
+ *  Returns string[]
+ */
+export const FetchData = async (url: string) => {
+    let data: string[] = [];
     await axios
     .get(url)
     .then(res => data = res.data.message)
-    .catch(err =>data = ['ERROR',err] as never[])
+    .catch(err =>data = ['ERROR',err])
     return data;
 }
 
-/*Function that uses the FetchData Hook to assign values to a stateVar
+/* Uses the FetchData Hook to assign values to stateVar
  * by using the setFunction parameter
  */
 export const retrieveData = async (url: string,
                                 stateVar:string[],
-                                setFunction:React.Dispatch<React.SetStateAction<string[]>>) => {
+                                setFunction:React.Dispatch<React.SetStateAction<string[]>>)=> {
     return await FetchData(url)
                  .then((data) => setFunction(stateVar.concat(data)))
-                 .catch(err => setFunction(['ERROR',err] as never[]))
+                 .catch(err => setFunction(['ERROR',err]))
+};
+
+/**
+ *  Hook to make API requests
+ *  Returns string
+ */
+ export const FetchString = async (url: string)=> {
+    let data: string = "";
+    await axios
+    .get(url)
+    .then(res => data = res.data.message)
+    .catch(err =>data = 'ERROR'+err)
+    return data;
+}
+
+/* Uses the FetchString Hook to assign values to a state variable
+ * by using the setFunction parameter
+ */
+export const retrieveString = async (url: string, setFunction:React.Dispatch<React.SetStateAction<string>>)=> {
+    return await FetchString(url)
+                 .then((data) => setFunction(data))
+                 .catch(err => setFunction('ERROR'+err))
 };
 
 /*
- * Function that splits an array of strings in subarrays by first letter
-and returns the new array that contains the arrays. The array given does not change
+ * Takes a string[] as a parameter
+ * Splits the array in subarrays by first letter and stores the array in an array
+ * Returns the array that contains the string arrays.
  */
 export const splitArrayToNameArrays = (arr: string[]): Array<string[]> => {
-    let breeds:Array<string[]> = [];
+    let breedsByLetter:Array<string[]> = [];
     let sortedBreedNames = arr.sort();
     let currentLetter:string = "";
     let i=0;
     do {
         currentLetter = sortedBreedNames[i].charAt(0);
-        breeds.push([ ...sortedBreedNames.filter(el => el.charAt(0) === currentLetter)]);
-        i= i+ breeds[breeds.length-1].length;
+        breedsByLetter.push([ ...sortedBreedNames.filter( (el:string) => el[0] === currentLetter)]);
+        i= i+ breedsByLetter[breedsByLetter.length-1].length;
     } while(i<sortedBreedNames.length);
-    return breeds;   
+    return breedsByLetter;   
 }
 
 /*
@@ -48,7 +74,8 @@ export const findLetter = (arr:Array<string[]>,n:number) :string => {
 }
 
 /**
- * Accepts a string[] with urls of dogs and returns an array that consists of Dog Components
+ * Accepts a string[] with urls of dogs
+ * Returns an array that consists of Dog Components
  */
  export const showDogs = (urls:string[],preF:string) => {
     return urls.map( (dog,index) => 

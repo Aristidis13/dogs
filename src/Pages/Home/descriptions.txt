@@ -1,0 +1,2 @@
+This is the view that appears in the screen homepage
+and contains a random list of dogs.

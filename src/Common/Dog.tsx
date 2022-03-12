@@ -1,6 +1,6 @@
 import {FunctionComponent} from 'react'
 
-interface DogProps {
+export interface DogProps {
     index:string,
     imgUrl: string
     key: string

@@ -1,0 +1,3 @@
+This is the Breed Component that can be selected from the Breeds List
+Contains photos of dogs for the specific Breed and
+a list with every subBreed avalable in the corresponding Breed

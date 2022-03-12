@@ -1,18 +1,15 @@
-import axios from 'axios';
 import { FunctionComponent, useEffect, useState } from 'react';
-import Dog from './Dog';
+import Dog from '../../Common/Dog';
+import { retrieveString } from '../../Helpers';
 
-interface BreedProps {
+ export interface BreedProps {
     name:string;
 }
 
 const Breed: FunctionComponent<BreedProps> = (props:BreedProps) => {
-    const [imgUrl,setBreedImg] = useState("");
+    const [imgUrl,setImgUrl] = useState<string>("");
     useEffect( () => {
-        axios
-        .get('breed/'+props.name+'/images/random')
-        .then( res => {setBreedImg(res.data.message); })
-        .catch(err => {console.error('Error in image fetching: '+err);})
+        retrieveString('breed/'+props.name+'/images/random',setImgUrl);
     },[props.name])
     return  (
         <Dog key={props.name}

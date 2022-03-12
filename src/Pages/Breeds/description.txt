@@ -1,0 +1,3 @@
+Ths is a module that contains the view for every Breed you see.
+Fetches every Breed avaliable, makes a Breed Component and loads it
+in screen by alphabetic order.

@@ -1,39 +1,30 @@
-import axios from "axios";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
-import Dog from "../Component/Dog";
-//import * as helpers from "../Helpers";
-
-
-interface SubBreedPageProps {
-    
-}
+import { showDogs,retrieveData } from "../../Helpers";
  
-const SubBreedPage: FunctionComponent<SubBreedPageProps> = () => {
+export interface NoProps {}
+
+const SubBreedPage: FunctionComponent<NoProps> = () => {
     const POSTSPERPAGE = 10;
     let {subBreed,breedName} = useParams<string>();
     let [subBreedImgsContainer, setSubBreedImgsContainer] = useState<string[]>([]);
     let [numOfPages,setNumOfPages] = useState<number>(0)
     let [imgsInScreen,setImgsInScreen] = useState<string[]>([]);
-    const [compIsMounted,setCompIsMounted] = useState<boolean>(false); // Mounts once the fetchDogs function
+    let [compIsMounted,setCompIsMounted] = useState<boolean>(false)
+    const urlForAPICall = 'https://dog.ceo/api/breed/'+breedName+'/'+subBreed+'/images';
     const breedPageChange = ({selected}:any) => {
         setImgsInScreen(subBreedImgsContainer.slice(selected*POSTSPERPAGE, selected*POSTSPERPAGE+POSTSPERPAGE))
     }
+    const fetchDogs = useCallback(() => retrieveData(urlForAPICall,subBreedImgsContainer,setSubBreedImgsContainer),[urlForAPICall,subBreedImgsContainer]);
     useEffect( () => {
-        axios
-        .get('https://dog.ceo/api/breed/'+breedName+'/'+subBreed+'/images')
-        .then((imgs) => {
-            setSubBreedImgsContainer(imgs.data.message);
-            setNumOfPages(Math.ceil( imgs.data.message.length / POSTSPERPAGE ));
-            if (!compIsMounted){
-                setCompIsMounted(true);
-                setImgsInScreen(imgs.data.message.slice(0, POSTSPERPAGE))
-            }
-
-        })
-        .catch((err) =>{console.error("Error for fetching images for subBreed "+err);})
-    },[compIsMounted,breedName,subBreed])
+        if(!compIsMounted){
+            setCompIsMounted(true);
+            fetchDogs();
+        }
+        setNumOfPages(Math.ceil( subBreedImgsContainer.length / POSTSPERPAGE ));
+        setImgsInScreen(subBreedImgsContainer.slice(0, POSTSPERPAGE));
+    },[ fetchDogs,compIsMounted,subBreedImgsContainer])
     return ( <section id="subBreedPage">
         <h2 className="subBreedHeader">
             <span className="subBreedSpan">{subBreed}</span>,
@@ -56,17 +47,7 @@ const SubBreedPage: FunctionComponent<SubBreedPageProps> = () => {
                 previousLinkClassName="prevLink"
                 nextLinkClassName="nextLink"
             />
-        <section id="subBreed">
-        {
-            imgsInScreen.map( (imgUrl,index) => (
-            <Dog key={index.toString()}
-                 index={index.toString()}
-                 imgUrl={imgUrl}
-                 alt={"Image of "+subBreed+", a sub-breed of "+breedName}
-                 prefix={"subBreed"}
-            />))
-        }
-        </section>
+        <section id="subBreed">{showDogs(imgsInScreen,"subBreed")}</section>
     </section> );
 }
  

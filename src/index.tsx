@@ -1,31 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import './index.css';
-import {BrowserRouter,Routes,Route, HashRouter } from 'react-router-dom'
-import Header from './Pages/Header'
-import HomePage from './Pages/HomePage'
-import BreedsPage from './Pages/BreedsPage';
-import BreedPage from './Pages/BreedPage'
-import SubBreedPage from './Pages/SubBreedPage';
-import NotFoundPage from './Pages/NotFound';
+import {BrowserRouter,Routes,Route } from 'react-router-dom'
+import Header from './Pages/Header/Header'
+import BreedsPage from './Pages/Breeds/BreedsPage';
+import BreedPage from './Pages/Breed/BreedPage'
+import SubBreedPage from './Pages/SubBreed/SubBreedPage';
+import NotFoundPage from './Pages/NotFoundPage';
+import HomePage from './Pages/Home/Home';
 
-
-ReactDOM.render(
+render(
   <React.StrictMode>
-    <HashRouter >
+    <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage numOfDogsPerAPIRequest={9} /> } />
-        <Route path="breeds" element={<BreedsPage />}/>
+        <Route path="/" element={<HomePage urlForAPICall={'breeds/image/random/9'} />} />
+        <Route path="breeds" element={<BreedsPage urlForAPICall={'breeds/list/all'} />}/>
         <Route path="breeds/:breedName" element={<BreedPage />} />
-        <Route path="breeds/:breedName/:subBreed" element={
-          true 
-          ? <SubBreedPage />
-          : <NotFoundPage />}
-        />        
+        <Route path="breeds/:breedName/:subBreed" element={ <SubBreedPage /> } />        
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
