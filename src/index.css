@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size:16px;
+  font-size: 16px;
   --input-height: 1.8rem;
 }
 
@@ -18,21 +18,22 @@ code {
  ****** Header *******
  *********************/
 .header {
-  margin:2rem;
+  margin: 2rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 }
+
 #logo {
   width: 4rem;
-  height:4rem;
+  height: 4rem;
 }
 
 .pageTitle {
   font-size: 2.5rem;
   text-align: center;
-  flex:100%;
+  flex: 100%;
 }
 
 .nav-ul {
@@ -40,39 +41,41 @@ code {
   list-style: none;
   padding: 1rem;
 }
+
 .nav-item,
-.breedContainer figCaption  {
+.breedContainer figCaption {
   padding: .5rem 1rem;
   text-decoration: none;
   font-size: 1.4rem;
   font-weight: bold;
   color: black;
 }
-.nav-item > *,
-.nav-item > a
-.breedContainer figCaption > * {
+
+.nav-item>*,
+.nav-item>a .breedContainer figCaption>* {
   text-decoration: none;
-  color:black;
+  color: black;
 }
+
 /*
  * Breed Finder
  */
 #breedsSearch {
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .searchContainer {
-  position:relative;
+  position: relative;
 }
 
 .searchResults {
-  display:flex;
-  justify-content:center;
-  flex-flow:column nowrap;
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
   position: relative;
   top: 0;
   right: 0;
-  left:0;
+  left: 0;
   background-color: #fff;
   z-index: 1;
   overflow: hidden;
@@ -86,28 +89,32 @@ code {
 .barContainer {
   position: absolute;
   top: 2rem;
-  z-index:2;
+  z-index: 2;
   border: thin solid #333;
   width: 100%;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   max-height: 10rem;
-  height:auto;
+  height: auto;
   overflow-y: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .barContainer::-webkit-scrollbar {
-  width: 0;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
 }
 
 .searchItem {
   font-weight: 700;
   font-size: 1rem;
   padding: .5rem;
-  color:#333;
+  color: #333;
   text-decoration: none;
   text-transform: capitalize;
 }
@@ -118,23 +125,23 @@ code {
   flex-flow: row wrap;
 }
 
-#subBreedsList > h2 {
-  flex:100%;
+#subBreedsList>h2 {
+  flex: 100%;
   text-align: center;
 }
 
-#subBreedsList > a {
-  color:black;
+#subBreedsList>a {
+  color: black;
   text-decoration: none;
   font-weight: bold;
-  font-size:1.3rem;
+  font-size: 1.3rem;
   display: block;
   text-align: center;
   flex: 33%;
   min-width: 300px;
 }
 
-#subBreedsList > a img {
+#subBreedsList>a img {
   aspect-ratio: 1/1;
   object-fit: cover;
   width: 100%;
@@ -146,10 +153,10 @@ code {
 .randomDogsPage {
   display: flex;
   flex-flow: column nowrap;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
-  width:90%;
+  width: 90%;
 }
 
 /*Intro text*/
@@ -169,30 +176,33 @@ code {
   min-height: 100vh;
   grid-gap: 1.25rem .625rem;
 }
+
 /*Container of img*/
 #randomDogsImgs .dogFigure {
   max-width: 100%;
   width: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
   margin: 0;
   max-height: 50vh;
 }
+
 /*Img element of random dog*/
-#randomDogsImgs > .dogFigure > .dogImage {
+#randomDogsImgs>.dogFigure>.dogImage {
   min-width: 80%;
   max-width: 100%;
-  min-height:30vh;
+  min-height: 30vh;
   max-height: 80vh;
   width: 100%;
-  flex:auto;
-  object-fit: contain;
+  flex: auto;
+  object-fit: cover;
   aspect-ratio: 1/1;
 }
+
 /*Btn that brings more images*/
 .loadBtn {
   color: black;
-  font-size:2rem;
+  font-size: 2rem;
   background-color: rgb(191, 151, 228);
   padding: 1.5rem 3rem 1.5rem;
   border: none;
@@ -202,15 +212,15 @@ code {
 /*****************
  * Breeds Page ***
  *****************/
- #breedsPage {
+#breedsPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-#breedsPage > *,
-#breedPage > *,
-#subBreedPage > * {
+#breedsPage>*,
+#breedPage>*,
+#subBreedPage>* {
   width: 80%;
   margin: 1.5rem auto;
 }
@@ -228,7 +238,8 @@ code {
 }
 
 /*Pagination Container*/
-.breedsPaginationContainer, .subBreedsPaginationContainer {
+.breedsPaginationContainer,
+.subBreedsPaginationContainer {
   display: flex;
   flex-flow: row wrap;
   list-style: none;
@@ -236,21 +247,23 @@ code {
 }
 
 .paginationLink,
-.break > [role="button"] {
-  display:block;
+.break>[role="button"] {
+  display: block;
   padding: 1rem;
-  cursor:grab;
+  cursor: grab;
 }
 
 .activeLetter {
-  background-color: rgba(191, 151, 228,.4);
+  background-color: rgba(191, 151, 228, .4);
 }
 
-.nextLink, .prevLink {
+.nextLink,
+.prevLink {
   display: block;
   padding: 1rem;
-  cursor:grab;
+  cursor: grab;
 }
+
 /*End of Pagination Container classes*/
 
 /*Breeds*/
@@ -287,6 +300,7 @@ code {
   object-fit: cover;
   aspect-ratio: 1/1;
 }
+
 /*
 .dogFigure:hover {
   animation: dogTime .5s cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
@@ -299,38 +313,79 @@ code {
 }*/
 
 
-#breed, #subBreed {
-  display:grid;
-  grid: repeat(5,auto) / repeat(10,10%);
+#breed,
+#subBreed {
+  display: grid;
+  grid: repeat(5, auto) / repeat(10, 10%);
 }
 
 #subBreed .dogImage {
   width: 100%;
 }
 
-.dogFigure > figCaption{
+.dogFigure>figCaption {
   display: flex;
   justify-content: center;
-  padding:0;
+  padding: 0;
 }
 
-#breed .dogFigure, #subBreed .dogFigure {
-  margin:0;
-  display:flex;
+#breed .dogFigure,
+#subBreed .dogFigure {
+  margin: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#breed .dogFigure:nth-child(1),#subBreed .dogFigure:nth-child(1) { grid-area: 1 / 1 / 2 / 6; }
-#breed .dogFigure:nth-child(2),#subBreed .dogFigure:nth-child(2) { grid-area: 1 / 6 / 2 / 11;}
-#breed .dogFigure:nth-child(3),#subBreed .dogFigure:nth-child(3) { grid-area: 2 / 1 / 3 / 11; }
-#breed .dogFigure:nth-child(4),#subBreed .dogFigure:nth-child(4) { grid-area: 3 / 1 / 4 / 6; }
-#breed .dogFigure:nth-child(5),#subBreed .dogFigure:nth-child(5) { grid-area: 3 / 6 / 4 / 11;}
-#breed .dogFigure:nth-child(6),#subBreed .dogFigure:nth-child(6) { grid-area: 4 / 1 / 5 / 6; }
-#breed .dogFigure:nth-child(7),#subBreed .dogFigure:nth-child(7) { grid-area: 4 / 6 / 5 / 11; }
-#breed .dogFigure:nth-child(8),#subBreed .dogFigure:nth-child(8) { grid-area: 5 / 1 / 6 / 4; }
-#breed .dogFigure:nth-child(9),#subBreed .dogFigure:nth-child(9) { grid-area: 5 / 4 / 6 / 8; }
-#breed .dogFigure:nth-child(10),#subBreed .dogFigure:nth-child(10){grid-area: 5 / 8 / 6 / 11; }
+#breed .dogFigure:nth-child(1),
+#subBreed .dogFigure:nth-child(1) {
+  grid-area: 1 / 1 / 2 / 6;
+}
+
+#breed .dogFigure:nth-child(2),
+#subBreed .dogFigure:nth-child(2) {
+  grid-area: 1 / 6 / 2 / 11;
+}
+
+#breed .dogFigure:nth-child(3),
+#subBreed .dogFigure:nth-child(3) {
+  grid-area: 2 / 1 / 3 / 11;
+}
+
+#breed .dogFigure:nth-child(4),
+#subBreed .dogFigure:nth-child(4) {
+  grid-area: 3 / 1 / 4 / 6;
+}
+
+#breed .dogFigure:nth-child(5),
+#subBreed .dogFigure:nth-child(5) {
+  grid-area: 3 / 6 / 4 / 11;
+}
+
+#breed .dogFigure:nth-child(6),
+#subBreed .dogFigure:nth-child(6) {
+  grid-area: 4 / 1 / 5 / 6;
+}
+
+#breed .dogFigure:nth-child(7),
+#subBreed .dogFigure:nth-child(7) {
+  grid-area: 4 / 6 / 5 / 11;
+}
+
+#breed .dogFigure:nth-child(8),
+#subBreed .dogFigure:nth-child(8) {
+  grid-area: 5 / 1 / 6 / 4;
+}
+
+#breed .dogFigure:nth-child(9),
+#subBreed .dogFigure:nth-child(9) {
+  grid-area: 5 / 4 / 6 / 8;
+}
+
+#breed .dogFigure:nth-child(10),
+#subBreed .dogFigure:nth-child(10) {
+  grid-area: 5 / 8 / 6 / 11;
+}
 
 #breed .dogFigure .dogImage {
   width: 100%;
@@ -339,54 +394,70 @@ code {
 
 /*Media Queries*/
 @media screen and (max-width: 700px) {
+
   /*Random Dogs View*/
   :root {
-    font-size:12px;
+    font-size: 12px;
   }
+
   #randomDogsImgs {
     grid-template-columns: 100%;
   }
+
   #randomDogsImgs .dogFigure {
     max-height: unset;
   }
-  #randomDogsImgs > .dogFigure > .dogImage {
+
+  #randomDogsImgs>.dogFigure>.dogImage {
     aspect-ratio: unset;
     max-height: 100vh;
     width: 100%
   }
+
   /*Breeds*/
-  #breedsPage > *, #breedPage > *, #subBreedPage > * {
+  #breedsPage>*,
+  #breedPage>*,
+  #subBreedPage>* {
     font-size: 1rem;
   }
+
   .breedContainer {
     flex: 100%;
     margin: 10px 0;
   }
+
   /*Subreeds*/
   #subBreedsList {
     display: flex;
     flex-flow: row wrap;
-      text-transform: capitalize;
+    text-transform: capitalize;
   }
 }
 
 @media screen and (min-width: 700px) and (max-width: 1200px) {
+
   /*Random Dogs View*/
   :root {
-    font-size:14px;
+    font-size: 14px;
   }
+
   #randomDogsImgs {
     grid-template-columns: 50% 50%;
   }
-  #randomDogsImgs > .dogFigure > .dogImage {
-/*    aspect-ratio: unset;*/
+
+  #randomDogsImgs>.dogFigure>.dogImage {
+    /*    aspect-ratio: unset;*/
     max-height: 100vh;
     width: 100%
   }
+
   /*Breeds*/
-  #breedsPage > *, #breedPage > *, #subBreedPage > * {
+  #breedsPage>*,
+  #breedPage>*,
+  #subBreedPage>* {
     font-size: 1rem;
   }
+
   .breedContainer {
     flex: 40%;
     margin: 10px 10px;
