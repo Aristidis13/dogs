@@ -8,21 +8,18 @@ import Text from "../../Common/Text";
  */
 interface IDogsProps {
   urlForAPICall: string;
+  scrollPosition: object;
 }
 
 const HomePage: FunctionComponent<IDogsProps> = (props: IDogsProps) => {
   const [dogs, setDogs] = useState<string[]>([]);
-  const [compIsMounted, setCompIsMounted] = useState<boolean>(false);
   const fetchDogs = useCallback(
     () => retrieveData(props.urlForAPICall, dogs, setDogs),
     [props.urlForAPICall, dogs]
   );
   useEffect(() => {
-    if (!compIsMounted) {
-      setCompIsMounted(true);
-      fetchDogs();
-    }
-  }, [fetchDogs, compIsMounted]);
+    fetchDogs();
+  }, []);
 
   return (
     <article className="randomDogsPage">

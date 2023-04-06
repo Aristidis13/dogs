@@ -1,4 +1,4 @@
-import { useState, FunctionComponent, useEffect } from "react";
+import { useState, FunctionComponent } from "react";
 import ImageViewer from "react-images-viewer";
 
 export interface DogProps {
@@ -33,6 +33,7 @@ const Dog: FunctionComponent<DogProps> = (props: DogProps) => {
         currImg={currentImage}
         isOpen={imageIsClicked}
         imgs={urls}
+        imgCountSeparator=" of "
         onClose={() => setImageIsClicked(false)}
         onClickNext={() => setCurrentImage(currentImage + 1)}
         onClickPrev={() => setCurrentImage(currentImage - 1)}
