@@ -1,5 +1,6 @@
-import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState, useRef } from "react"; //prettier-ignore
 import { showDogs, retrieveData } from "../../Helpers";
+import { Spin } from "antd";
 import Title from "../../Common/Title";
 import Text from "../../Common/Text";
 
@@ -8,17 +9,35 @@ import Text from "../../Common/Text";
  */
 interface IDogsProps {
   urlForAPICall: string;
-  scrollPosition: object;
 }
 
 const HomePage: FunctionComponent<IDogsProps> = (props: IDogsProps) => {
   const [dogs, setDogs] = useState<string[]>([]);
-  const fetchDogs = useCallback(
-    () => retrieveData(props.urlForAPICall, dogs, setDogs),
-    [props.urlForAPICall, dogs]
-  );
+  const [loadMore, setLoadMore] = useState(false);
+  const loadRef = useRef(null); //prettier-ignore
+
   useEffect(() => {
-    fetchDogs();
+    if (loadMore) {
+      retrieveData(props.urlForAPICall, dogs, setDogs);
+      setLoadMore(false);
+    }
+  }, [loadMore]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !loadMore) setLoadMore(true);
+      },
+      {
+        threshold: 1
+      }
+    );
+    if (loadRef.current) observer.observe(loadRef.current);
+
+    return () => {
+      if (loadRef.current) observer.unobserve(loadRef.current);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -28,14 +47,15 @@ const HomePage: FunctionComponent<IDogsProps> = (props: IDogsProps) => {
         textClass="text randomIntro"
         text={
           <>
-            See as many <span className="emoji">&#128054;</span> as you want!
+            See as many <span className="emoji">&#128054;</span> as you want!{" "}
           </>
         }
       />
-      <section id="randomDogsImgs"> {showDogs(dogs, "random")}</section>
-      <button className="loadBtn" onClick={() => fetchDogs()}>
-        Fetch more dogs
-      </button>
+      <section id="randomDogsImgs" ref={loadRef}>
+        {showDogs(dogs, "random")}
+      </section>
+      <div className="loadContainer">{loadMore && <Spin size="large" />}</div>
+      <div ref={loadRef}></div>
     </article>
   );
 };

@@ -23,7 +23,6 @@ const Dog: FunctionComponent<DogProps> = (props: DogProps) => {
         className={"dogImage " + props.prefix + "Img" + props.index}
         alt={props.alt || "A cute dog"}
         onClick={() => {
-          console.log("Image is ready");
           setCurrentImage(Number(props.index));
           setImageIsClicked(true);
         }}

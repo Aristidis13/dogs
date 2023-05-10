@@ -60,32 +60,6 @@ code {
 /*
  * Breed Finder
  */
-#breedsSearch {
-  overflow: hidden;
-}
-
-.searchContainer {
-  position: relative;
-}
-
-.searchResults {
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
-  position: relative;
-  top: 0;
-  right: 0;
-  left: 0;
-  background-color: #fff;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.searchBar {
-  height: var(--input-height);
-  width: 17rem;
-}
-
 .barContainer {
   position: absolute;
   top: 2rem;
@@ -139,6 +113,10 @@ code {
   text-align: center;
   flex: 33%;
   min-width: 300px;
+}
+
+.loadContainer {
+  padding: 5px
 }
 
 #subBreedsList>a img {
