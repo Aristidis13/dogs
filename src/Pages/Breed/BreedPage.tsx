@@ -12,7 +12,7 @@ const BreedPage: FunctionComponent<IBreed> = ({
   breedName,
   handleSubBreedSelection
 }) => {
-  const POSTSPERPAGE = 10;
+  const POSTSPERPAGE = 12;
   const urlForAPICall = "https://dog.ceo/api/breed/" + breedName[0] + "/images";
   let [imgUrlsContainer, setImgUrlsContainer] = useState<string[]>([]);
   let [numOfPages, setNumOfPages] = useState<number>(0);

@@ -287,26 +287,12 @@ code {
   aspect-ratio: 1/1;
 }
 
-/*
-.dogFigure:hover {
-  animation: dogTime .5s cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes dogTime {
-  from { transform: scale(1,1) rotate(0deg)}
-  to { transform: scale(1.5,1.5) rotate(360deg)}
-}*/
-
-
 #breed,
 #subBreed {
   display: grid;
-  grid: repeat(5, auto) / repeat(10, 10%);
-}
-
-#subBreed .dogImage {
-  width: 100%;
+  grid: repeat(4, auto) / 33% 34% 33%;
+  justify-content: center;
+  align-items: center;
 }
 
 .dogFigure>figCaption {
@@ -317,65 +303,18 @@ code {
 
 #breed .dogFigure,
 #subBreed .dogFigure {
-  margin: 0;
+  margin: 0 2%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#breed .dogFigure:nth-child(1),
-#subBreed .dogFigure:nth-child(1) {
-  grid-area: 1 / 1 / 2 / 6;
-}
-
-#breed .dogFigure:nth-child(2),
-#subBreed .dogFigure:nth-child(2) {
-  grid-area: 1 / 6 / 2 / 11;
-}
-
-#breed .dogFigure:nth-child(3),
-#subBreed .dogFigure:nth-child(3) {
-  grid-area: 2 / 1 / 3 / 11;
-}
-
-#breed .dogFigure:nth-child(4),
-#subBreed .dogFigure:nth-child(4) {
-  grid-area: 3 / 1 / 4 / 6;
-}
-
-#breed .dogFigure:nth-child(5),
-#subBreed .dogFigure:nth-child(5) {
-  grid-area: 3 / 6 / 4 / 11;
-}
-
-#breed .dogFigure:nth-child(6),
-#subBreed .dogFigure:nth-child(6) {
-  grid-area: 4 / 1 / 5 / 6;
-}
-
-#breed .dogFigure:nth-child(7),
-#subBreed .dogFigure:nth-child(7) {
-  grid-area: 4 / 6 / 5 / 11;
-}
-
-#breed .dogFigure:nth-child(8),
-#subBreed .dogFigure:nth-child(8) {
-  grid-area: 5 / 1 / 6 / 4;
-}
-
-#breed .dogFigure:nth-child(9),
-#subBreed .dogFigure:nth-child(9) {
-  grid-area: 5 / 4 / 6 / 8;
-}
-
-#breed .dogFigure:nth-child(10),
-#subBreed .dogFigure:nth-child(10) {
-  grid-area: 5 / 8 / 6 / 11;
-}
-
 #breed .dogFigure .dogImage {
   width: 100%;
-  margin: 0 auto;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  max-height: 100%;
+  margin: 5px;
 }
 
 /*Media Queries*/
@@ -387,7 +326,7 @@ code {
   }
 
   #randomDogsImgs {
-    grid-template-columns: 100%;
+    grid-template-columns: 50% 50%;
   }
 
   #randomDogsImgs .dogFigure {
@@ -407,9 +346,17 @@ code {
     font-size: 1rem;
   }
 
+  #breeds {
+    grid-template-columns: repeat(3, 33%);
+  }
+
+  #breed {
+    grid-template-columns: 50% 50%;
+  }
+
   .breedContainer {
-    flex: 100%;
-    margin: 10px 0;
+    flex: 31%;
+    margin: 1%;
   }
 
   /*Subreeds*/
@@ -445,8 +392,8 @@ code {
   }
 
   .breedContainer {
-    flex: 40%;
-    margin: 10px 10px;
+    flex: 30%;
+    margin: 1%;
   }
 }
 
