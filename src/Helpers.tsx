@@ -40,6 +40,18 @@ export const FetchString = async (url: string) => {
   return data;
 };
 
+export const createUrl = (
+  url: string = "",
+  breed: string | undefined = undefined,
+  subBreed: string | undefined = undefined
+): string => {
+  return breed && subBreed
+    ? url + "/" + breed + "/" + subBreed
+    : breed
+    ? url + "/" + breed
+    : url;
+};
+
 /* Uses the FetchString Hook to assign values to a state variable
  * by using the setFunction parameter
  */
@@ -84,8 +96,8 @@ export const findLetter = (arr: Array<string[]>, n: number): string => {
  * Accepts a string[] with urls of dogs
  * Returns an array that consists of Dog Components
  */
-export const showDogs = (urls: string[], preF: string) => {
-  return urls.map((dog, index) => (
+export const showDogs = (urls: string[], preF: string) =>
+  urls.map((dog, index) => (
     <Dog
       key={index.toString()}
       index={index.toString()}
@@ -94,4 +106,3 @@ export const showDogs = (urls: string[], preF: string) => {
       urls={urls}
     />
   ));
-};

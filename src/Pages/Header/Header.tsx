@@ -1,26 +1,38 @@
-import { FunctionComponent } from 'react';
-import { Link} from 'react-router-dom';
-import SearchBar from './SearchBar';
+import { FunctionComponent } from "react";
+import SearchBar from "./SearchBar";
+import { pages } from "../../constants";
 //@ts-ignore
-import logo from "../../assets/logo/logo.svg"
+import logo from "../../assets/logo/logo.svg";
 
-export interface NoProps {}
+export interface IHeader {
+  setVisiblePage: Function;
+  handleBreedSelection: Function;
+}
 
-const Header: FunctionComponent<NoProps> = () => {
-    return (<header className="header">
-    <Link to="/">
-        <img id="logo" src={logo} alt="Dog Lovers" />
-    </Link>
-    <nav className="nav">
+const Header: FunctionComponent<IHeader> = ({
+  setVisiblePage,
+  handleBreedSelection
+}) => {
+  return (
+    <header className="header">
+      <img
+        onClick={() => setVisiblePage(pages.home)}
+        id="logo"
+        src={logo}
+        alt="Dog Lovers"
+      />
+      <nav className="nav">
         <ul className="nav-ul">
-            <li className="nav-item">
-                <Link to="/"> Random Dogs</Link>
-            </li>
-            <li className="nav-item">
-                <Link to="/breeds"> Breeds</Link>
-            </li>
+          <li onClick={() => setVisiblePage(pages.breeds)} className="nav-item">
+            Breeds
+          </li>
         </ul>
-    </nav>
-    <SearchBar idOfSearchBar="breedsSearch" placeholder="Hi, I search things" urlForAPICall='breeds/list/all' />
-</header>);}
+      </nav>
+      <SearchBar
+        urlForAPICall="breeds/list/all"
+        handleBreedSelection={handleBreedSelection}
+      />
+    </header>
+  );
+};
 export default Header;

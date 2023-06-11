@@ -1,8 +1,4 @@
-export const apiUrls = {
-    randomDogs:"breeds/image/random/"
-}
-
-export const pages = {
+const pages = {
     home:'home',
     breeds:'breeds',
     breed:'breed',
@@ -10,4 +6,4 @@ export const pages = {
     notExistent:'notExistent'
 }
 
-export const initState = { pageUrl: pages.home, apiUrl:apiUrls.randomDogs + '9' };
+export {pages}

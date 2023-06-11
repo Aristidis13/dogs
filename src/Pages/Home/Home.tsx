@@ -1,9 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FunctionComponent, useEffect, useState, useRef } from "react"; //prettier-ignore
 import { showDogs, retrieveData } from "../../Helpers";
 import { Spin } from "antd";
 import Title from "../../Common/Title";
-import Text from "../../Common/Text";
-
 /**
  * Props for Dogs appearing in the start of the website
  */
@@ -11,14 +10,20 @@ interface IDogsProps {
   urlForAPICall: string;
 }
 
-const HomePage: FunctionComponent<IDogsProps> = (props: IDogsProps) => {
+const HomePage: FunctionComponent<IDogsProps> = ({
+  urlForAPICall
+}: IDogsProps) => {
   const [dogs, setDogs] = useState<string[]>([]);
   const [loadMore, setLoadMore] = useState(false);
-  const loadRef = useRef(null); //prettier-ignore
+  const loadRef = useRef(null);
+
+  useEffect(() => {
+    retrieveData(urlForAPICall, dogs, setDogs);
+  }, []);
 
   useEffect(() => {
     if (loadMore) {
-      retrieveData(props.urlForAPICall, dogs, setDogs);
+      retrieveData(urlForAPICall, dogs, setDogs);
       setLoadMore(false);
     }
   }, [loadMore]);
@@ -43,14 +48,6 @@ const HomePage: FunctionComponent<IDogsProps> = (props: IDogsProps) => {
   return (
     <article className="randomDogsPage">
       <Title name="Dog Lovers" />
-      <Text
-        textClass="text randomIntro"
-        text={
-          <>
-            See as many <span className="emoji">&#128054;</span> as you want!{" "}
-          </>
-        }
-      />
       <section id="randomDogsImgs" ref={loadRef}>
         {showDogs(dogs, "random")}
       </section>
