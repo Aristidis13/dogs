@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FunctionComponent, useEffect, useState, useRef } from "react"; //prettier-ignore
-import { showDogs, retrieveData } from "../../Helpers";
+import { showDogs, FetchData } from "../../Helpers";
 import { Spin } from "antd";
-import Title from "../../Common/Title";
 /**
  * Props for Dogs appearing in the start of the website
  */
@@ -17,13 +16,19 @@ const HomePage: FunctionComponent<IDogsProps> = ({
   const [loadMore, setLoadMore] = useState(false);
   const loadRef = useRef(null);
 
+  //Initial fill
   useEffect(() => {
-    retrieveData(urlForAPICall, dogs, setDogs);
+    FetchData(urlForAPICall)
+      .then(data => setDogs(dogs.concat(data)))
+      .catch(err => setDogs(["ERROR", err]));
   }, []);
 
+  //Fill every time user scrolls to the end
   useEffect(() => {
     if (loadMore) {
-      retrieveData(urlForAPICall, dogs, setDogs);
+      FetchData(urlForAPICall)
+        .then(data => setDogs(dogs.concat(data)))
+        .catch(err => setDogs(["ERROR", err]));
       setLoadMore(false);
     }
   }, [loadMore]);
@@ -47,7 +52,6 @@ const HomePage: FunctionComponent<IDogsProps> = ({
 
   return (
     <article className="randomDogsPage">
-      <Title name="Dog Lovers" />
       <section id="randomDogsImgs" ref={loadRef}>
         {showDogs(dogs, "random")}
       </section>

@@ -1,6 +1,7 @@
-import { FunctionComponent, useCallback, useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FunctionComponent, useEffect, useState } from "react";
 import LoadImg from "./SubBreedListImg";
-import { retrieveData } from "../../Helpers";
+import { FetchData } from "../../Helpers";
 
 interface SubBreedListProps {
   main: string;
@@ -12,23 +13,12 @@ const SubBreedList: FunctionComponent<SubBreedListProps> = ({
   handleSubBreedSelection
 }: SubBreedListProps) => {
   let [subBreeds, setSubBreeds] = useState<string[]>([]);
-  let [compIsMounted, setCompIsMounted] = useState<boolean>(false);
-  const fetchDogs = useCallback(
-    () =>
-      retrieveData(
-        "https://dog.ceo/api/breed/" + main + "/list",
-        subBreeds,
-        setSubBreeds
-      ),
-    [main, subBreeds]
-  );
 
   useEffect(() => {
-    if (!compIsMounted) {
-      setCompIsMounted(true);
-      fetchDogs();
-    }
-  }, [compIsMounted, fetchDogs]);
+    FetchData("https://dog.ceo/api/breed/" + main + "/list")
+      .then(data => setSubBreeds(data))
+      .catch(err => setSubBreeds(["ERROR", err]));
+  }, [main]);
 
   return subBreeds.length > 0 ? (
     <>
@@ -36,10 +26,7 @@ const SubBreedList: FunctionComponent<SubBreedListProps> = ({
       {subBreeds.map((subBreed, index) => (
         <div
           key={index}
-          onClick={() => {
-            handleSubBreedSelection([main, subBreed]);
-            fetchDogs();
-          }}
+          onClick={() => handleSubBreedSelection([main, subBreed])}
         >
           <figure className={"subBreed-" + index}>
             <figcaption className="caption">{subBreed}</figcaption>

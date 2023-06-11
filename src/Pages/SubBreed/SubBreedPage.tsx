@@ -1,6 +1,7 @@
-import { FunctionComponent, useCallback, useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FunctionComponent, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { showDogs, retrieveData } from "../../Helpers";
+import { showDogs, FetchData } from "../../Helpers";
 
 interface ISubBrred {
   breedName: string;
@@ -20,9 +21,7 @@ const SubBreedPage: FunctionComponent<ISubBrred> = ({
   let [compIsMounted, setCompIsMounted] = useState<boolean>(false);
   const urlForAPICall =
     "https://dog.ceo/api/breed/" + breedName + "/" + subBreedName + "/images";
-  console.log("urlForAPICall", urlForAPICall);
-  console.log("breedName", breedName);
-  console.log("subBreedName ", subBreedName);
+
   const breedPageChange = ({ selected }: any) => {
     setImgsInScreen(
       subBreedImgsContainer.slice(
@@ -31,23 +30,17 @@ const SubBreedPage: FunctionComponent<ISubBrred> = ({
       )
     );
   };
-  const fetchDogs = useCallback(
-    () =>
-      retrieveData(
-        urlForAPICall,
-        subBreedImgsContainer,
-        setSubBreedImgsContainer
-      ),
-    [urlForAPICall, subBreedImgsContainer]
-  );
+
   useEffect(() => {
     if (!compIsMounted) {
       setCompIsMounted(true);
-      fetchDogs();
+      FetchData(urlForAPICall)
+        .then(data => setSubBreedImgsContainer(data))
+        .catch(err => setSubBreedImgsContainer(["ERROR", err]));
     }
     setNumOfPages(Math.ceil(subBreedImgsContainer.length / POSTSPERPAGE));
     setImgsInScreen(subBreedImgsContainer.slice(0, POSTSPERPAGE));
-  }, [fetchDogs, compIsMounted, subBreedImgsContainer]);
+  }, [compIsMounted, subBreedImgsContainer, breedName]);
   return (
     <section id="subBreedPage">
       <h2 className="subBreedHeader">

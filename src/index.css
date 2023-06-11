@@ -18,7 +18,6 @@ code {
  ****** Header *******
  *********************/
 .header {
-  margin: 2rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -28,6 +27,16 @@ code {
 #logo {
   width: 4rem;
   height: 4rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.isLink {
+  cursor: grab;
 }
 
 .pageTitle {

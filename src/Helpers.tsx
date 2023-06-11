@@ -14,19 +14,6 @@ export const FetchData = async (url: string) => {
   return data;
 };
 
-/* Uses the FetchData Hook to assign values to stateVar
- * by using the setFunction parameter
- */
-export const retrieveData = async (
-  url: string,
-  stateVar: string[],
-  setFunction: React.Dispatch<React.SetStateAction<string[]>>
-) => {
-  return await FetchData(url)
-    .then(data => setFunction(stateVar.concat(data)))
-    .catch(err => setFunction(["ERROR", err]));
-};
-
 /**
  *  Hook to make API requests
  *  Returns string
@@ -38,18 +25,6 @@ export const FetchString = async (url: string) => {
     .then(res => (data = res.data.message))
     .catch(err => (data = "ERROR" + err));
   return data;
-};
-
-export const createUrl = (
-  url: string = "",
-  breed: string | undefined = undefined,
-  subBreed: string | undefined = undefined
-): string => {
-  return breed && subBreed
-    ? url + "/" + breed + "/" + subBreed
-    : breed
-    ? url + "/" + breed
-    : url;
 };
 
 /* Uses the FetchString Hook to assign values to a state variable
@@ -72,12 +47,11 @@ export const retrieveString = async (
 export const splitArrayToNameArrays = (arr: string[]): Array<string[]> => {
   let breedsByLetter: Array<string[]> = [];
   let sortedBreedNames = arr.sort();
-  let currentLetter: string = "";
   let i = 0;
   do {
-    currentLetter = sortedBreedNames[i].charAt(0);
+    const currentLetter = sortedBreedNames[i].charAt(0);
     breedsByLetter.push([
-      ...sortedBreedNames.filter((el: string) => el[0] === currentLetter)
+      ...sortedBreedNames.filter(el => el[0] === currentLetter)
     ]);
     i = i + breedsByLetter[breedsByLetter.length - 1].length;
   } while (i < sortedBreedNames.length);

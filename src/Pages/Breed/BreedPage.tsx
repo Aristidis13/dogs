@@ -35,25 +35,27 @@ const BreedPage: FunctionComponent<IBreed> = ({
   return (
     <section id="breedPage">
       <h1 className="intro"> {breedName || "Unknown Breed"} </h1>
-      <ReactPaginate
-        pageCount={numOfPages}
-        pageRangeDisplayed={4}
-        marginPagesDisplayed={4}
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
-        renderOnZeroPageCount={() => null}
-        onPageChange={pageChange}
-        containerClassName="breedsPaginationContainer"
-        pageClassName="paginationLetter"
-        pageLinkClassName="paginationLink"
-        activeClassName="activeLetter"
-        previousClassName="prevBtn"
-        nextClassName="nextBtn"
-        activeLinkClassName="activeLink"
-        previousLinkClassName="prevLink"
-        nextLinkClassName="nextLink"
-      />
       <section id="breed"> {showDogs(imgsInScreen, "breed")}</section>
+      {numOfPages > 1 && (
+        <ReactPaginate
+          pageCount={numOfPages}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={3}
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          renderOnZeroPageCount={() => null}
+          onPageChange={pageChange}
+          containerClassName="breedsPaginationContainer"
+          pageClassName="paginationLetter"
+          pageLinkClassName="paginationLink"
+          activeClassName="activeLetter"
+          previousClassName="prevBtn"
+          nextClassName="nextBtn"
+          activeLinkClassName="activeLink"
+          previousLinkClassName="prevLink"
+          nextLinkClassName="nextLink"
+        />
+      )}
       <section id="subBreedsList">
         <SubBreedsList
           main={breedName?.[0]}

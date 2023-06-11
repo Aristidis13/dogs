@@ -17,7 +17,7 @@ const Dog: FunctionComponent<DogProps> = (props: DogProps) => {
   const urls = (props.urls ?? []).map(url => ({ src: url }));
 
   return (
-    <figure className={"dogFigure " + props.prefix + "Figure-" + props.index}>
+    <figure className={`dogFigure ${props.prefix}Figure-${props.index} isLink`}>
       <img
         src={props.imgUrl}
         className={"dogImage " + props.prefix + "Img" + props.index}

@@ -10,7 +10,7 @@ import HomePage from "./Pages/Home/Home";
 
 const App = () => {
   const [visiblePage, setVisiblePage] = useState(pages.home);
-  const [dataForApiCall, setDataForApiCall] = useState<string[]>([""]);
+  const [dataForApiCall, setDataForApiCall] = useState<string[]>([]);
 
   const onBreedSelection = (breed: string[]) => {
     setVisiblePage(pages.breed);

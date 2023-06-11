@@ -2,7 +2,6 @@ import { FunctionComponent, useEffect, useState } from "react";
 import Breed from "./BreedInBreeds";
 import { splitArrayToNameArrays, findLetter, FetchData } from "../../Helpers";
 import ReactPaginate from "react-paginate";
-import Title from "../../Common/Title";
 
 export interface BreedsPageProps {
   urlForAPICall: string;
@@ -27,7 +26,6 @@ const BreedsPage: FunctionComponent<BreedsPageProps> = ({
   }, [urlForAPICall]);
   return (
     <article id="breedsPage">
-      <Title name="Dog Breeds" />
       <ReactPaginate
         pageCount={breedsContainer.length}
         pageRangeDisplayed={breedsContainer.length}
