@@ -104,6 +104,7 @@ code {
 /*Sub Breeds*/
 #subBreedsList {
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
 }
 
@@ -207,9 +208,25 @@ code {
 #breedsPage>*,
 #breedPage>*,
 #subBreedPage>* {
-  width: 80%;
+  width: 90%;
   margin: 1.5rem auto;
 }
+
+.subBreedListItem {
+  margin: 1rem;
+  max-width: 31%;
+  max-height: 40vmin;
+  cursor: grab;
+}
+
+.subBreedListItem>img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  max-height: 100%;
+  margin: 5px;
+}
+
 
 .breedsIntro {
   text-align: justify;

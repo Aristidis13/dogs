@@ -2,7 +2,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import LoadImg from "./SubBreedListImg";
 import { FetchData } from "../../Helpers";
-
 interface SubBreedListProps {
   main: string;
   handleSubBreedSelection: Function;
@@ -24,19 +23,14 @@ const SubBreedList: FunctionComponent<SubBreedListProps> = ({
     <>
       <h2 className="subBreeds">Sub Breeds for {main}</h2>
       {subBreeds.map((subBreed, index) => (
-        <div
+        <figure
           key={index}
           onClick={() => handleSubBreedSelection([main, subBreed])}
+          className="subBreedListItem"
         >
-          <figure className={"subBreed-" + index}>
-            <figcaption className="caption">{subBreed}</figcaption>
-            <LoadImg
-              key={"subBreed-" + index}
-              name={subBreed}
-              breedName={main}
-            />
-          </figure>
-        </div>
+          <figcaption className="caption">{subBreed}</figcaption>
+          <LoadImg key={"subBreed-" + index} name={subBreed} breedName={main} />
+        </figure>
       ))}
     </>
   ) : null;

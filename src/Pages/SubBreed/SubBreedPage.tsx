@@ -12,7 +12,7 @@ const SubBreedPage: FunctionComponent<ISubBrred> = ({
   breedName,
   subBreedName
 }) => {
-  const POSTSPERPAGE = 10;
+  const POSTSPERPAGE = 12;
   let [subBreedImgsContainer, setSubBreedImgsContainer] = useState<string[]>(
     []
   );

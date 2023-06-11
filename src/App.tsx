@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { pages } from "./constants";
+import { Typography } from "antd";
 import "./index.css";
 import Header from "./Pages/Header/Header";
 import BreedsPage from "./Pages/Breeds/BreedsPage";
@@ -44,10 +45,18 @@ const App = () => {
         />
       )}
       {visiblePage === pages.subBreed && (
-        <SubBreedPage
-          breedName={dataForApiCall[0]}
-          subBreedName={dataForApiCall[1]}
-        />
+        <>
+          <Typography
+            className="isLink"
+            onClick={() => onBreedSelection([dataForApiCall[0]])}
+          >
+            Return to Parent Breed
+          </Typography>
+          <SubBreedPage
+            breedName={dataForApiCall[0]}
+            subBreedName={dataForApiCall[1]}
+          />
+        </>
       )}
       {typeof Object.values(pages).find(p => p === visiblePage) ===
         "undefined" && <NotFoundPage />}
