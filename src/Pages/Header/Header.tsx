@@ -39,7 +39,7 @@ const Header: FunctionComponent<IHeader> = ({
           handleBreedSelection={handleBreedSelection}
         />
       </header>
-      <Divider />
+      <Divider className="divider" />
     </>
   );
 };
