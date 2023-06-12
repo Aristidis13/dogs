@@ -19,8 +19,7 @@ const SubBreedPage: FunctionComponent<ISubBrred> = ({
   let [numOfPages, setNumOfPages] = useState<number>(0);
   let [imgsInScreen, setImgsInScreen] = useState<string[]>([]);
   let [compIsMounted, setCompIsMounted] = useState<boolean>(false);
-  const urlForAPICall =
-    "https://dog.ceo/api/breed/" + breedName + "/" + subBreedName + "/images";
+  const urlForAPICall = "breed/" + breedName + "/" + subBreedName + "/images";
 
   const breedPageChange = ({ selected }: any) => {
     setImgsInScreen(

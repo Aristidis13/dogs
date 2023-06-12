@@ -7,9 +7,14 @@ import Dog from "./Common/Dog";
  */
 export const FetchData = async (url: string) => {
   let data: string[] = [];
-  await axios
-    .get(url)
-    .then(res => (data = res.data.message))
+  await axios({
+    method: "get",
+    url: "https://dog.ceo/api/" + url
+  })
+    .then(res => {
+      console.log("res ", res.data);
+      return (data = res.data.message);
+    })
     .catch(err => (data = ["ERROR", err]));
   return data;
 };
@@ -21,7 +26,7 @@ export const FetchData = async (url: string) => {
 export const FetchString = async (url: string) => {
   let data: string = "";
   await axios
-    .get(url)
+    .get("https://dog.ceo/api/" + url)
     .then(res => (data = res.data.message))
     .catch(err => (data = "ERROR" + err));
   return data;

@@ -14,9 +14,9 @@ const SubBreedList: FunctionComponent<SubBreedListProps> = ({
   let [subBreeds, setSubBreeds] = useState<string[]>([]);
 
   useEffect(() => {
-    FetchData("https://dog.ceo/api/breed/" + main + "/list")
+    FetchData("breed/" + main + "/list")
       .then(data => setSubBreeds(data))
-      .catch(err => setSubBreeds(["ERROR", err]));
+      .catch(err => console.log(["ERROR", err]));
   }, [main]);
 
   return subBreeds.length > 0 ? (
