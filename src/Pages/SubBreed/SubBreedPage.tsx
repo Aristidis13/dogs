@@ -2,15 +2,18 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { showDogs, FetchData } from "../../Helpers";
+import { Typography } from "antd";
 
 interface ISubBrred {
   breedName: string;
   subBreedName: string;
+  returnToParentBreed: Function;
 }
 
 const SubBreedPage: FunctionComponent<ISubBrred> = ({
   breedName,
-  subBreedName
+  subBreedName,
+  returnToParentBreed
 }) => {
   const POSTSPERPAGE = 12;
   let [subBreedImgsContainer, setSubBreedImgsContainer] = useState<string[]>(
@@ -42,10 +45,19 @@ const SubBreedPage: FunctionComponent<ISubBrred> = ({
   }, [compIsMounted, subBreedImgsContainer, breedName]);
   return (
     <section id="subBreedPage">
-      <h2 className="subBreedHeader">
-        <span className="subBreedSpan">{subBreedName}</span>, a sub-breed of{" "}
-        <span className="mainBreedSpan">{breedName}</span>
-      </h2>
+      <div className="header-container">
+        <h2 className="subBreedHeader">
+          <span className="subBreedSpan">{subBreedName}</span>, a sub-breed of{" "}
+          <span className="mainBreedSpan">{breedName}</span>
+        </h2>
+        <Typography
+          className="return isLink"
+          onClick={() => returnToParentBreed([breedName])}
+        >
+          Return to Parent Breed
+        </Typography>
+      </div>
+      <section id="subBreed">{showDogs(imgsInScreen, "subBreed")}</section>
       <ReactPaginate
         pageCount={numOfPages}
         pageRangeDisplayed={4}
@@ -64,7 +76,6 @@ const SubBreedPage: FunctionComponent<ISubBrred> = ({
         previousLinkClassName="prevLink"
         nextLinkClassName="nextLink"
       />
-      <section id="subBreed">{showDogs(imgsInScreen, "subBreed")}</section>
     </section>
   );
 };
