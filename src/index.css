@@ -54,8 +54,7 @@ code {
 .breedContainer figCaption {
   padding: .5rem 1rem;
   text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: bold;
+  font-size: 1.5rem;
   color: black;
 }
 
@@ -215,8 +214,13 @@ code {
 .subBreedListItem {
   margin: 1rem;
   max-width: 31%;
-  max-height: 40vmin;
+  width: 50vw;
   cursor: grab;
+  font-size: 1.5rem;
+}
+
+.subBreedListItem>figcaption {
+  text-transform: capitalize;
 }
 
 .subBreedListItem>img {
@@ -224,7 +228,6 @@ code {
   object-fit: cover;
   aspect-ratio: 1/1;
   max-height: 100%;
-  margin: 5px;
 }
 
 
@@ -233,6 +236,18 @@ code {
   text-justify: distribute;
   text-indent: 2rem;
   font-size: 1.5rem;
+}
+
+.subBreedHeader {
+  font-weight: 200;
+  font-size: 2rem;
+}
+
+#breedPage>.intro,
+.subBreedHeader>.subBreedSpan {
+  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 200;
 }
 
 .pagination-cta {
@@ -297,6 +312,10 @@ code {
   text-transform: capitalize;
 }
 
+.dogFigure:hover {
+  filter: contrast(125%) brightness(90%);
+}
+
 .breedContainer .dogImage {
   max-height: 40vh;
   width: 100%;
@@ -313,9 +332,10 @@ code {
 }
 
 .dogFigure>figCaption {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   padding: 0;
+  font-size: 1.5rem;
+  font-weight: initial;
 }
 
 #breed .dogFigure,
@@ -326,7 +346,8 @@ code {
   align-items: center;
 }
 
-#breed .dogFigure .dogImage {
+#breed .dogFigure .dogImage,
+#subBreed .dogFigure .dogImage {
   width: 100%;
   object-fit: cover;
   aspect-ratio: 1/1;

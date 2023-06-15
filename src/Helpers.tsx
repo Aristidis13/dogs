@@ -11,10 +11,7 @@ export const FetchData = async (url: string) => {
     method: "get",
     url: "https://dog.ceo/api/" + url
   })
-    .then(res => {
-      console.log("res ", res.data);
-      return (data = res.data.message);
-    })
+    .then(res => (data = res.data.message))
     .catch(err => (data = ["ERROR", err]));
   return data;
 };
