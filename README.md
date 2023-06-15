@@ -35,3 +35,6 @@ Libraries used:
 - "react-redux": "^7.2.6",
 - "typescript": "^4.5.5",
 
+Live version in github Pages
+with `npm run deploy` command
+https://aristidis13.github.io/dogs/
